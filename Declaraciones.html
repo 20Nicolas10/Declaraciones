@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Declaraciones ❤️</title>
+
+<style>
+*{
+box-sizing:border-box
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#641526;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* CORAZONES */
+
+.corazon{
+position:fixed;
+color:#ffb0c0;
+opacity:.15;
+font-size:30px;
+z-index:0;
+animation:flotar 8s infinite linear;
+pointer-events:none;
+}
+
+.c1{left:5%;top:20%}
+.c2{left:20%;top:70%}
+.c3{left:40%;top:30%}
+.c4{left:60%;top:80%}
+.c5{left:80%;top:25%}
+.c6{left:92%;top:60%}
+
+@keyframes flotar{
+
+0%{
+transform:translateY(40px);
+opacity:0;
+}
+
+30%{
+opacity:.2;
+}
+
+100%{
+transform:translateY(-120px);
+opacity:0;
+}
+
+}
+
+/* ENCABEZADO */
+
+header{
+text-align:center;
+padding:45px 15px 25px;
+position:relative;
+z-index:1;
+}
+
+header h1{
+font-size:38px;
+margin:0 0 8px;
+}
+
+header p{
+opacity:.85;
+}
+
+/* CONTENEDOR */
+
+.contenedor{
+width:94%;
+max-width:650px;
+margin:auto;
+position:relative;
+z-index:1;
+}
+
+/* BOTÓN ADMIN */
+
+.admin-btn{
+display:block;
+margin:30px auto;
+padding:12px 20px;
+border:0;
+border-radius:10px;
+background:#40101b;
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+/* PANEL */
+
+#panel{
+display:none;
+background:white;
+color:#351018;
+border-radius:18px;
+padding:22px;
+margin:20px auto;
+box-shadow:0 5px 20px #0005;
+}
+
+#administracion{
+display:none;
+}
+
+input,
+textarea{
+width:100%;
+padding:12px;
+margin:7px 0 14px;
+border:1px solid #ccc;
+border-radius:9px;
+font-size:16px;
+font-family:Arial,sans-serif;
+}
+
+textarea{
+min-height:110px;
+resize:vertical;
+}
+
+button{
+border:0;
+border-radius:9px;
+padding:11px 16px;
+cursor:pointer;
+}
+
+.publicar{
+width:100%;
+background:#741d32;
+color:white;
+font-size:16px;
+}
+
+#error{
+color:red;
+font-weight:bold;
+}
+
+/* ADMIN */
+
+.admin-item{
+border:1px solid #ddd;
+border-radius:10px;
+padding:12px;
+margin-top:12px;
+}
+
+.admin-item strong{
+color:#741d32;
+}
+
+.eliminar{
+background:#eee;
+color:#a00020;
+margin-top:8px;
+}
+
+/* TITULO */
+
+.tituloDeclaraciones{
+text-align:center;
+margin-top:40px;
+margin-bottom:20px;
+}
+
+/* MENSAJES TIPO WHATSAPP */
+
+.declaracion{
+background:#efe7de;
+color:#222;
+padding:10px 12px 7px;
+margin:13px 0;
+border-radius:9px;
+box-shadow:0 2px 5px #0005;
+position:relative;
+max-width:90%;
+margin-left:auto;
+}
+
+/* PICO DEL MENSAJE */
+
+.declaracion:after{
+content:"";
+position:absolute;
+right:-7px;
+top:0;
+border-width:0 0 12px 12px;
+border-style:solid;
+border-color:transparent transparent transparent #efe7de;
+}
+
+/* NOMBRE + CURSO */
+
+.nombre{
+font-weight:bold;
+color:#8b2140;
+font-size:15px;
+margin-bottom:5px;
+}
+
+.curso{
+font-weight:normal;
+color:#777;
+font-size:12px;
+display:inline;
+margin-left:5px;
+}
+
+/* TEXTO */
+
+.texto{
+font-size:16px;
+line-height:1.4;
+word-wrap:break-word;
+}
+
+/* HORA */
+
+.info{
+text-align:right;
+font-size:11px;
+color:#777;
+margin-top:4px;
+}
+
+/* VACÍO */
+
+.vacio{
+text-align:center;
+padding:40px 10px;
+opacity:.8;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+opacity:.7;
+}
+
+/* CELULAR */
+
+@media(max-width:500px){
+
+header h1{
+font-size:31px;
+}
+
+.declaracion{
+max-width:94%;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- CORAZONES DEL FONDO -->
+
+<div class="corazon c1">♥</div>
+<div class="corazon c2">♡</div>
+<div class="corazon c3">♥</div>
+<div class="corazon c4">♡</div>
+<div class="corazon c5">♥</div>
+<div class="corazon c6">♡</div>
+
+
+<!-- ENCABEZADO -->
+
+<header>
+
+<h1>💌 Declaraciones</h1>
+
+<p>
+Las declaraciones de nuestra comunidad escolar ❤️
+</p>
+
+</header>
+
+
+<div class="contenedor">
+
+
+<!-- BOTÓN ADMINISTRADOR -->
+
+<button
+class="admin-btn"
+onclick="abrirAdmin()">
+
+🔐 Panel de administrador
+
+</button>
+
+
+<!-- PANEL DE ADMINISTRADOR -->
+
+<div id="panel">
+
+
+<!-- LOGIN -->
+
+<div id="login">
+
+<h2>🔐 Administrador</h2>
+
+<p>
+Ingresá la contraseña para administrar las declaraciones.
+</p>
+
+<input
+type="password"
+id="password"
+placeholder="Contraseña">
+
+<!-- CORREGIDO -->
+
+<button
+class="publicar"
+onclick="login()">
+
+Entrar
+
+</button>
+
+<p id="error"></p>
+
+</div>
+
+
+<!-- ADMINISTRACIÓN -->
+
+<div id="administracion">
+
+<h2>💌 Nueva declaración</h2>
+
+
+<label>
+Nombre
+</label>
+
+<input
+id="nombre"
+placeholder="Anónimo">
+
+
+<label>
+Curso
+</label>
+
+<input
+id="curso"
+placeholder="Ej: 4°B">
+
+
+<label>
+Declaración
+</label>
+
+<textarea
+id="texto"
+placeholder="Escribí la declaración...">
+</textarea>
+
+
+<button
+class="publicar"
+onclick="publicar()">
+
+❤️ Publicar
+
+</button>
+
+
+<h3>
+Administrar declaraciones
+</h3>
+
+
+<div id="listaAdmin"></div>
+
+</div>
+
+</div>
+
+
+<!-- DECLARACIONES ABAJO DEL PANEL -->
+
+<h2 class="tituloDeclaraciones">
+💌 Declaraciones publicadas
+</h2>
+
+
+<div id="declaraciones"></div>
+
+
+<div
+id="vacio"
+class="vacio">
+
+Todavía no hay declaraciones 💌
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+Hecho con ❤️ para el colegio
+
+</footer>
+
+
+<script>
+
+/* =========================
+   CONTRASEÑA
+========================= */
+
+const CONTRASENA="Nicolas123!";
+
+
+/* =========================
+   OBTENER DECLARACIONES
+========================= */
+
+function obtener(){
+
+let d=
+localStorage.getItem(
+"declaracionesColegio"
+);
+
+return d
+?JSON.parse(d)
+:[];
+
+}
+
+
+/* =========================
+   GUARDAR
+========================= */
+
+function guardar(d){
+
+localStorage.setItem(
+"declaracionesColegio",
+JSON.stringify(d)
+);
+
+}
+
+
+/* =========================
+   PROTEGER TEXTO
+========================= */
+
+function escapar(t){
+
+let d=
+document.createElement("div");
+
+d.textContent=t;
+
+return d.innerHTML;
+
+}
+
+
+/* =========================
+   MOSTRAR DECLARACIONES
+========================= */
+
+function mostrar(){
+
+let cont=
+document.getElementById(
+"declaraciones"
+);
+
+let vacio=
+document.getElementById(
+"vacio"
+);
+
+let d=obtener();
+
+cont.innerHTML="";
+
+
+if(!d.length){
+
+vacio.style.display="block";
+
+return;
+
+}
+
+
+vacio.style.display="none";
+
+
+d.forEach(x=>{
+
+let hora=
+x.hora||"Ahora";
+
+
+cont.innerHTML+=`
+
+<div class="declaracion">
+
+<div class="nombre">
+
+💌 ${escapar(x.nombre)}
+
+<span class="curso">
+
+· ${escapar(x.curso||"")}
+
+</span>
+
+</div>
+
+
+<div class="texto">
+
+${escapar(x.texto)}
+
+</div>
+
+
+<div class="info">
+
+${escapar(hora)} ✓✓
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   ABRIR PANEL
+========================= */
+
+function abrirAdmin(){
+
+let p=
+document.getElementById(
+"panel"
+);
+
+if(
+p.style.display==="block"
+){
+
+p.style.display="none";
+
+}else{
+
+p.style.display="block";
+
+}
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(){
+
+let p=
+document.getElementById(
+"password"
+).value;
+
+
+let error=
+document.getElementById(
+"error"
+);
+
+
+if(p===CONTRASENA){
+
+document.getElementById(
+"login"
+).style.display="none";
+
+
+document.getElementById(
+"administracion"
+).style.display="block";
+
+
+error.textContent="";
+
+
+mostrarAdmin();
+
+
+}else{
+
+error.textContent=
+"❌ Contraseña incorrecta.";
+
+}
+
+}
+
+
+/* =========================
+   PUBLICAR
+========================= */
+
+function publicar(){
+
+let nombre=
+document.getElementById(
+"nombre"
+).value.trim();
+
+
+let curso=
+document.getElementById(
+"curso"
+).value.trim();
+
+
+let texto=
+document.getElementById(
+"texto"
+).value.trim();
+
+
+if(!nombre){
+
+nombre="Anónimo";
+
+}
+
+
+if(!texto){
+
+alert(
+"Escribí una declaración."
+);
+
+return;
+
+}
+
+
+/* HORA */
+
+let ahora=
+new Date();
+
+
+let hora=
+ahora.getHours()
+.toString()
+.padStart(2,"0")
++":"
++ahora.getMinutes()
+.toString()
+.padStart(2,"0");
+
+
+/* OBTENER */
+
+let d=obtener();
+
+
+/* NUEVA DECLARACIÓN */
+
+d.unshift({
+
+nombre:nombre,
+
+curso:curso,
+
+texto:texto,
+
+hora:hora
+
+});
+
+
+/* GUARDAR */
+
+guardar(d);
+
+
+/* LIMPIAR */
+
+document.getElementById(
+"nombre"
+).value="";
+
+
+document.getElementById(
+"curso"
+).value="";
+
+
+document.getElementById(
+"texto"
+).value="";
+
+
+/* ACTUALIZAR */
+
+mostrar();
+
+mostrarAdmin();
+
+
+alert(
+"❤️ Declaración publicada correctamente."
+);
+
+}
+
+
+/* =========================
+   ADMINISTRAR
+========================= */
+
+function mostrarAdmin(){
+
+let lista=
+document.getElementById(
+"listaAdmin"
+);
+
+let d=obtener();
+
+
+lista.innerHTML="";
+
+
+d.forEach((x,i)=>{
+
+lista.innerHTML+=`
+
+<div class="admin-item">
+
+<strong>
+
+${escapar(x.nombre)}
+
+</strong>
+
+
+<small>
+
+· ${escapar(x.curso||"")}
+
+</small>
+
+
+<p>
+
+${escapar(x.texto)}
+
+</p>
+
+
+<button
+class="eliminar"
+onclick="eliminar(${i})">
+
+🗑️ Eliminar
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   ELIMINAR
+========================= */
+
+function eliminar(i){
+
+if(
+!confirm(
+"¿Eliminar esta declaración?"
+)
+){
+
+return;
+
+}
+
+
+let d=obtener();
+
+
+d.splice(i,1);
+
+
+guardar(d);
+
+
+mostrar();
+
+mostrarAdmin();
+
+}
+
+
+/* =========================
+   INICIAR PÁGINA
+========================= */
+
+mostrar();
+
+</script>
+
+</body>
+</html>
