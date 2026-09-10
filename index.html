@@ -1015,7 +1015,8 @@ return;
 
 vacio.style.display="none";
 
-
+datos.sort((a, b) => a.timestamp - b.timestamp);
+   
 datos.forEach(x=>{
 
 let hora =
