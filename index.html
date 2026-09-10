@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Declaraciones ❤️</title>
 
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
 <style>
-*{
-box-sizing:border-box
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
@@ -18,8 +21,6 @@ color:white;
 min-height:100vh;
 overflow-x:hidden;
 }
-
-/* CORAZONES */
 
 .corazon{
 position:fixed;
@@ -39,24 +40,10 @@ pointer-events:none;
 .c6{left:92%;top:60%}
 
 @keyframes flotar{
-
-0%{
-transform:translateY(40px);
-opacity:0;
+0%{transform:translateY(40px);opacity:0}
+30%{opacity:.2}
+100%{transform:translateY(-120px);opacity:0}
 }
-
-30%{
-opacity:.2;
-}
-
-100%{
-transform:translateY(-120px);
-opacity:0;
-}
-
-}
-
-/* ENCABEZADO */
 
 header{
 text-align:center;
@@ -70,11 +57,7 @@ font-size:38px;
 margin:0 0 8px;
 }
 
-header p{
-opacity:.85;
-}
-
-/* CONTENEDOR */
+header p{opacity:.85}
 
 .contenedor{
 width:94%;
@@ -83,8 +66,6 @@ margin:auto;
 position:relative;
 z-index:1;
 }
-
-/* BOTÓN ADMIN */
 
 .admin-btn{
 display:block;
@@ -98,8 +79,6 @@ font-size:15px;
 cursor:pointer;
 }
 
-/* PANEL */
-
 #panel{
 display:none;
 background:white;
@@ -110,12 +89,9 @@ margin:20px auto;
 box-shadow:0 5px 20px #0005;
 }
 
-#administracion{
-display:none;
-}
+#administracion{display:none}
 
-input,
-textarea{
+input,textarea{
 width:100%;
 padding:12px;
 margin:7px 0 14px;
@@ -149,8 +125,6 @@ color:red;
 font-weight:bold;
 }
 
-/* ADMIN */
-
 .admin-item{
 border:1px solid #ddd;
 border-radius:10px;
@@ -158,9 +132,7 @@ padding:12px;
 margin-top:12px;
 }
 
-.admin-item strong{
-color:#741d32;
-}
+.admin-item strong{color:#741d32}
 
 .eliminar{
 background:#eee;
@@ -168,15 +140,11 @@ color:#a00020;
 margin-top:8px;
 }
 
-/* TITULO */
-
 .tituloDeclaraciones{
 text-align:center;
 margin-top:40px;
 margin-bottom:20px;
 }
-
-/* MENSAJES TIPO WHATSAPP */
 
 .declaracion{
 background:#efe7de;
@@ -190,8 +158,6 @@ max-width:90%;
 margin-left:auto;
 }
 
-/* PICO DEL MENSAJE */
-
 .declaracion:after{
 content:"";
 position:absolute;
@@ -201,8 +167,6 @@ border-width:0 0 12px 12px;
 border-style:solid;
 border-color:transparent transparent transparent #efe7de;
 }
-
-/* NOMBRE + CURSO */
 
 .nombre{
 font-weight:bold;
@@ -219,15 +183,11 @@ display:inline;
 margin-left:5px;
 }
 
-/* TEXTO */
-
 .texto{
 font-size:16px;
 line-height:1.4;
 word-wrap:break-word;
 }
-
-/* HORA */
 
 .info{
 text-align:right;
@@ -236,15 +196,11 @@ color:#777;
 margin-top:4px;
 }
 
-/* VACÍO */
-
 .vacio{
 text-align:center;
 padding:40px 10px;
 opacity:.8;
 }
-
-/* FOOTER */
 
 footer{
 text-align:center;
@@ -252,25 +208,19 @@ padding:30px;
 opacity:.7;
 }
 
-/* CELULAR */
+.mensaje{
+font-size:14px;
+margin-top:10px;
+}
 
 @media(max-width:500px){
-
-header h1{
-font-size:31px;
-}
-
-.declaracion{
-max-width:94%;
-}
-
+header h1{font-size:31px}
+.declaracion{max-width:94%}
 }
 </style>
 </head>
 
 <body>
-
-<!-- CORAZONES DEL FONDO -->
 
 <div class="corazon c1">♥</div>
 <div class="corazon c2">♡</div>
@@ -279,205 +229,138 @@ max-width:94%;
 <div class="corazon c5">♥</div>
 <div class="corazon c6">♡</div>
 
-
-<!-- ENCABEZADO -->
-
 <header>
-
 <h1>💌 Declaraciones</h1>
-
-<p>
-Las declaraciones de nuestra comunidad escolar ❤️
-</p>
-
+<p>Las declaraciones de nuestra comunidad escolar ❤️</p>
 </header>
-
 
 <div class="contenedor">
 
-
-<!-- BOTÓN ADMINISTRADOR -->
-
-<button
-class="admin-btn"
-onclick="abrirAdmin()">
-
+<button class="admin-btn" onclick="abrirAdmin()">
 🔐 Panel de administrador
-
 </button>
 
-
-<!-- PANEL DE ADMINISTRADOR -->
-
 <div id="panel">
-
-
-<!-- LOGIN -->
 
 <div id="login">
 
 <h2>🔐 Administrador</h2>
 
-<p>
-Ingresá la contraseña para administrar las declaraciones.
-</p>
+<p>Ingresá con tu cuenta de administrador.</p>
+
+<input
+type="email"
+id="email"
+placeholder="Correo electrónico">
 
 <input
 type="password"
 id="password"
 placeholder="Contraseña">
 
-<!-- CORREGIDO -->
-
-<button
-class="publicar"
-onclick="login()">
-
+<button class="publicar" onclick="login()">
 Entrar
-
 </button>
 
 <p id="error"></p>
 
 </div>
 
-
-<!-- ADMINISTRACIÓN -->
-
 <div id="administracion">
 
 <h2>💌 Nueva declaración</h2>
 
-
-<label>
-Nombre
-</label>
+<label>Nombre</label>
 
 <input
 id="nombre"
-placeholder="Anónimo">
+placeholder="Anónimo"
+maxlength="50">
 
-
-<label>
-Curso
-</label>
+<label>Curso</label>
 
 <input
 id="curso"
-placeholder="Ej: 4°B">
+placeholder="Ej: 4°B"
+maxlength="20">
 
-
-<label>
-Declaración
-</label>
+<label>Declaración</label>
 
 <textarea
 id="texto"
-placeholder="Escribí la declaración...">
-</textarea>
+placeholder="Escribí la declaración..."
+maxlength="500"></textarea>
 
-
-<button
-class="publicar"
-onclick="publicar()">
-
+<button class="publicar" onclick="publicar()">
 ❤️ Publicar
-
 </button>
 
-
-<h3>
-Administrar declaraciones
-</h3>
-
+<h3>Administrar declaraciones</h3>
 
 <div id="listaAdmin"></div>
 
-</div>
+<button
+class="eliminar"
+onclick="cerrarSesion()">
+🚪 Cerrar sesión
+</button>
 
 </div>
-
-
-<!-- DECLARACIONES ABAJO DEL PANEL -->
+</div>
 
 <h2 class="tituloDeclaraciones">
 💌 Declaraciones publicadas
 </h2>
 
-
 <div id="declaraciones"></div>
 
-
-<div
-id="vacio"
-class="vacio">
-
+<div id="vacio" class="vacio">
 Todavía no hay declaraciones 💌
-
 </div>
 
-
 </div>
-
 
 <footer>
-
 Hecho con ❤️ para el colegio
-
 </footer>
-
 
 <script>
 
 /* =========================
-   CONTRASEÑA
+   FIREBASE
 ========================= */
 
-const CONTRASENA="Nicolas123!";
+const firebaseConfig = {
+apiKey: "AIzaSyCF5wBGYrATIic99em2aYoZG4eHYkl9nQc",
+authDomain: "declaraciones-d104a.firebaseapp.com",
+databaseURL: "https://declaraciones-d104a-default-rtdb.firebaseio.com/",
+projectId: "declaraciones-d104a",
+storageBucket: "declaraciones-d104a.firebasestorage.app",
+messagingSenderId: "413894654793",
+appId: "1:413894654793:web:c5d573bb74f92b12bb3898"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.database();
+
+const declaracionesRef = db.ref("declaraciones");
+
+/* TU UID DE ADMINISTRADOR */
+
+const ADMIN_UID = "wjVSdbX4heMyx1NBasUnWA6LnYn2";
 
 
 /* =========================
-   OBTENER DECLARACIONES
-========================= */
-
-function obtener(){
-
-let d=
-localStorage.getItem(
-"declaracionesColegio"
-);
-
-return d
-?JSON.parse(d)
-:[];
-
-}
-
-
-/* =========================
-   GUARDAR
-========================= */
-
-function guardar(d){
-
-localStorage.setItem(
-"declaracionesColegio",
-JSON.stringify(d)
-);
-
-}
-
-
-/* =========================
-   PROTEGER TEXTO
+   ESCAPAR TEXTO
 ========================= */
 
 function escapar(t){
 
-let d=
-document.createElement("div");
+let d = document.createElement("div");
 
-d.textContent=t;
+d.textContent = t || "";
 
 return d.innerHTML;
 
@@ -490,40 +373,46 @@ return d.innerHTML;
 
 function mostrar(){
 
-let cont=
-document.getElementById(
-"declaraciones"
-);
+const cont =
+document.getElementById("declaraciones");
 
-let vacio=
-document.getElementById(
-"vacio"
-);
+const vacio =
+document.getElementById("vacio");
 
-let d=obtener();
+declaracionesRef
+.orderByChild("timestamp")
+.on("value", snapshot => {
 
-cont.innerHTML="";
+cont.innerHTML = "";
 
+let datos = [];
 
-if(!d.length){
+snapshot.forEach(child => {
 
-vacio.style.display="block";
+datos.push({
+id: child.key,
+...child.val()
+});
+
+});
+
+datos.reverse();
+
+if(!datos.length){
+
+vacio.style.display = "block";
 
 return;
 
 }
 
+vacio.style.display = "none";
 
-vacio.style.display="none";
+datos.forEach(x => {
 
+let hora = x.hora || "Ahora";
 
-d.forEach(x=>{
-
-let hora=
-x.hora||"Ahora";
-
-
-cont.innerHTML+=`
+cont.innerHTML += `
 
 <div class="declaracion">
 
@@ -533,19 +422,17 @@ cont.innerHTML+=`
 
 <span class="curso">
 
-· ${escapar(x.curso||"")}
+· ${escapar(x.curso || "")}
 
 </span>
 
 </div>
-
 
 <div class="texto">
 
 ${escapar(x.texto)}
 
 </div>
-
 
 <div class="info">
 
@@ -559,6 +446,8 @@ ${escapar(hora)} ✓✓
 
 });
 
+});
+
 }
 
 
@@ -568,20 +457,15 @@ ${escapar(hora)} ✓✓
 
 function abrirAdmin(){
 
-let p=
-document.getElementById(
-"panel"
-);
+let p = document.getElementById("panel");
 
-if(
-p.style.display==="block"
-){
+if(p.style.display === "block"){
 
-p.style.display="none";
+p.style.display = "none";
 
 }else{
 
-p.style.display="block";
+p.style.display = "block";
 
 }
 
@@ -589,47 +473,51 @@ p.style.display="block";
 
 
 /* =========================
-   LOGIN
+   LOGIN FIREBASE
 ========================= */
 
 function login(){
 
-let p=
-document.getElementById(
-"password"
-).value;
+const email =
+document.getElementById("email").value.trim();
 
+const password =
+document.getElementById("password").value;
 
-let error=
-document.getElementById(
-"error"
-);
+const error =
+document.getElementById("error");
 
+error.textContent = "";
 
-if(p===CONTRASENA){
+auth.signInWithEmailAndPassword(email,password)
 
-document.getElementById(
-"login"
-).style.display="none";
+.then(result => {
 
+if(result.user.uid !== ADMIN_UID){
 
-document.getElementById(
-"administracion"
-).style.display="block";
+error.textContent =
+"❌ Esta cuenta no es administradora.";
 
+auth.signOut();
 
-error.textContent="";
+return;
 
+}
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("administracion").style.display="block";
 
 mostrarAdmin();
 
+})
 
-}else{
+.catch(err => {
 
-error.textContent=
-"❌ Contraseña incorrecta.";
+error.textContent =
+"❌ Correo o contraseña incorrectos.";
 
-}
+});
 
 }
 
@@ -640,134 +528,100 @@ error.textContent=
 
 function publicar(){
 
-let nombre=
-document.getElementById(
-"nombre"
-).value.trim();
+const nombre =
+document.getElementById("nombre").value.trim() || "Anónimo";
 
+const curso =
+document.getElementById("curso").value.trim();
 
-let curso=
-document.getElementById(
-"curso"
-).value.trim();
-
-
-let texto=
-document.getElementById(
-"texto"
-).value.trim();
-
-
-if(!nombre){
-
-nombre="Anónimo";
-
-}
-
+const texto =
+document.getElementById("texto").value.trim();
 
 if(!texto){
 
-alert(
-"Escribí una declaración."
-);
+alert("Escribí una declaración.");
 
 return;
 
 }
 
+const ahora = new Date();
 
-/* HORA */
+const hora =
+ahora.getHours().toString().padStart(2,"0")
++
+":"
++
+ahora.getMinutes().toString().padStart(2,"0");
 
-let ahora=
-new Date();
+const nueva = {
 
+nombre: nombre,
 
-let hora=
-ahora.getHours()
-.toString()
-.padStart(2,"0")
-+":"
-+ahora.getMinutes()
-.toString()
-.padStart(2,"0");
+curso: curso,
 
+texto: texto,
 
-/* OBTENER */
+hora: hora,
 
-let d=obtener();
+timestamp: Date.now()
 
+};
 
-/* NUEVA DECLARACIÓN */
+declaracionesRef.push(nueva)
 
-d.unshift({
+.then(() => {
 
-nombre:nombre,
+document.getElementById("nombre").value="";
 
-curso:curso,
+document.getElementById("curso").value="";
 
-texto:texto,
+document.getElementById("texto").value="";
 
-hora:hora
+alert("❤️ Declaración publicada correctamente.");
+
+})
+
+.catch(() => {
+
+alert("❌ No se pudo publicar la declaración.");
 
 });
-
-
-/* GUARDAR */
-
-guardar(d);
-
-
-/* LIMPIAR */
-
-document.getElementById(
-"nombre"
-).value="";
-
-
-document.getElementById(
-"curso"
-).value="";
-
-
-document.getElementById(
-"texto"
-).value="";
-
-
-/* ACTUALIZAR */
-
-mostrar();
-
-mostrarAdmin();
-
-
-alert(
-"❤️ Declaración publicada correctamente."
-);
 
 }
 
 
 /* =========================
-   ADMINISTRAR
+   MOSTRAR ADMIN
 ========================= */
 
 function mostrarAdmin(){
 
-let lista=
-document.getElementById(
-"listaAdmin"
-);
+const lista =
+document.getElementById("listaAdmin");
 
-let d=obtener();
+declaracionesRef
+.orderByChild("timestamp")
+.on("value", snapshot => {
 
+lista.innerHTML = "";
 
-lista.innerHTML="";
+let datos = [];
 
+snapshot.forEach(child => {
 
-d.forEach((x,i)=>{
+datos.push({
+id: child.key,
+...child.val()
+});
 
-lista.innerHTML+=`
+});
+
+datos.reverse();
+
+datos.forEach(x => {
+
+lista.innerHTML += `
 
 <div class="admin-item">
 
@@ -777,13 +631,11 @@ ${escapar(x.nombre)}
 
 </strong>
 
-
 <small>
 
-· ${escapar(x.curso||"")}
+· ${escapar(x.curso || "")}
 
 </small>
-
 
 <p>
 
@@ -791,10 +643,9 @@ ${escapar(x.texto)}
 
 </p>
 
-
 <button
 class="eliminar"
-onclick="eliminar(${i})">
+onclick="eliminar('${x.id}')">
 
 🗑️ Eliminar
 
@@ -806,6 +657,8 @@ onclick="eliminar(${i})">
 
 });
 
+});
+
 }
 
 
@@ -813,37 +666,87 @@ onclick="eliminar(${i})">
    ELIMINAR
 ========================= */
 
-function eliminar(i){
+function eliminar(id){
 
-if(
-!confirm(
-"¿Eliminar esta declaración?"
-)
-){
+const usuario = auth.currentUser;
+
+if(!usuario || usuario.uid !== ADMIN_UID){
+
+alert("❌ No tenés permiso para eliminar.");
 
 return;
 
 }
 
+if(!confirm("¿Eliminar esta declaración?")){
 
-let d=obtener();
+return;
 
+}
 
-d.splice(i,1);
+declaracionesRef
+.child(id)
+.remove()
 
+.then(() => {
 
-guardar(d);
+alert("🗑️ Declaración eliminada.");
 
+})
 
-mostrar();
+.catch(() => {
 
-mostrarAdmin();
+alert("❌ No se pudo eliminar.");
+
+});
 
 }
 
 
 /* =========================
-   INICIAR PÁGINA
+   CERRAR SESIÓN
+========================= */
+
+function cerrarSesion(){
+
+auth.signOut();
+
+document.getElementById("administracion").style.display="none";
+
+document.getElementById("login").style.display="block";
+
+document.getElementById("password").value="";
+
+}
+
+
+/* =========================
+   COMPROBAR SESIÓN
+========================= */
+
+auth.onAuthStateChanged(user => {
+
+if(user && user.uid === ADMIN_UID){
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("administracion").style.display="block";
+
+mostrarAdmin();
+
+}else{
+
+document.getElementById("login").style.display="block";
+
+document.getElementById("administracion").style.display="none";
+
+}
+
+});
+
+
+/* =========================
+   INICIAR
 ========================= */
 
 mostrar();
@@ -851,4 +754,4 @@ mostrar();
 </script>
 
 </body>
-</html>
+   </html>
